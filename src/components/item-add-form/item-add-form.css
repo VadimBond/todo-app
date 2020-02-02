@@ -1,8 +1,8 @@
-.bottom-panel {
+.item-add-form {
 	margin-top: 10px;
 }
 
-.bottom-panel .new-todo-label {
+.item-add-form .new-todo-label {
 	width: auto;
 	flex-grow: 1;
 	margin-right: 3px;

@@ -80,10 +80,6 @@ export default class App extends Component {
 		this.setState({ filter });
 	};
 
-	onSearchChange = (search) => {
-		this.setState({ search });
-	};
-
 	filterItems(items, filter) {
 		if (filter === "all") {
 			return items;
@@ -93,6 +89,10 @@ export default class App extends Component {
 			return items.filter((item) => item.done);
 		}
 	}
+
+	onSearchChange = (search) => {
+		this.setState({ search });
+	};
 
 	searchItems(items, search) {
 		if (search.length === 0) {
@@ -124,7 +124,7 @@ export default class App extends Component {
 				</div>
 
 				<TodoList
-					items={ visibleItems }
+					items={visibleItems}
 					onToggleImportant={this.onToggleImportant}
 					onToggleDone={this.onToggleDone}
 					onDelete={this.onDelete} />

@@ -21,7 +21,7 @@ const ItemStatusFilter = ({ filter, onFilterChange = () => {} }) => {
 	});
 
 	return (
-		<div className="btn-group">
+		<div className="btn-group item-status-filter">
 			{ buttons }
 		</div>
 	);
