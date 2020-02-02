@@ -16,25 +16,26 @@ export default class ItemAddForm extends Component {
 
 	onSubmit = (e) => {
 		e.preventDefault();
-		this.props.onItemAdded(this.state.label);
-		this.setState({
-			label: ""
-		});
+		const { label } = this.state;
+		this.setState({ label: "" });
+		const cb = this.props.onItemAdded || (() => {});
+		cb(label);
 	};
 
 	render() {
 
 		return (
-			<form className="item-add-form d-flex w-100 align-items-center"
-						onSubmit={this.onSubmit} >
+			<form className="bottom-panel d-flex"
+						onSubmit={this.onSubmit}>
+
 				<input type="text"
-							 className="form-control col-10 mr-1"
+							 className="form-control new-todo-label"
+							 value={this.state.label}
 							 onChange={this.onLabelChange}
-							 placeholder="What needs to be done"
-							 value={this.state.label} />
-				<button className="btn btn-outline-secondary col-2" >
-					Add Item
-				</button>
+							 placeholder="What needs to be done?" />
+
+				<button type="submit"
+								className="btn btn-outline-secondary">Add</button>
 			</form>
 		);
 	}
