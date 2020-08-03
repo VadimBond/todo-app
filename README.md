@@ -1,3 +1,3 @@
 ToDo App
 
-Udemy (Juriy Bura)
+practical course React+Redux from Udemy (Juriy Bura)
