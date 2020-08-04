@@ -28,10 +28,10 @@ export default class ItemAddForm extends Component {
 						onSubmit={this.onSubmit}>
 
 				<input type="text"
-							 className="form-control new-todo-label"
-							 value={this.state.label}
-							 onChange={this.onLabelChange}
-							 placeholder="What needs to be done?" />
+							className="form-control new-todo-label"
+							value={this.state.label}
+							onChange={this.onLabelChange}
+							placeholder="What needs to be done?" />
 
 				<button type="submit"
 								className="btn btn-outline-secondary">Add</button>
