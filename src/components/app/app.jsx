@@ -14,9 +14,9 @@ export default class App extends Component {
 
 	state = {
 		items: [
-			{ id: 1, label: "Drink Tea", important: false, done: false },
-			{ id: 2, label: "Learn React", important: true, done: false },
-			{ id: 3, label: "Make App", important: false, done: false }
+			{id: 1, label: "Drink Tea", important: false, done: false},
+			{id: 2, label: "Learn React", important: true, done: false},
+			{id: 3, label: "Make App", important: false, done: false}
 		],
 		filter: "all",
 		search: ""

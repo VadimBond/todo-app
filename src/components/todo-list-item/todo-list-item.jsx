@@ -14,9 +14,10 @@ const TodoListItem = ({ important, done, label, onToggleImportant, onToggleDone,
 
 	return (
 		<span className={classNames}>
-      <span
-				className="todo-list-item-label"
-				onClick={onToggleDone}>{label}</span>
+      <span className="todo-list-item-label"
+						onClick={onToggleDone}>
+					{label}
+			</span>
 
       <button type="button"
 							className="btn btn-outline-success btn-sm float-right"

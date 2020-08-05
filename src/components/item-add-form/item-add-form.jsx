@@ -34,7 +34,9 @@ export default class ItemAddForm extends Component {
 							placeholder="What needs to be done?" />
 
 				<button type="submit"
-								className="btn btn-outline-secondary">Add</button>
+								className="btn btn-outline-secondary">
+							Add
+				</button>
 			</form>
 		);
 	}
