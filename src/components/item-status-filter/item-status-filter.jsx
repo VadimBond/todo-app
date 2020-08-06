@@ -1,12 +1,12 @@
 import React from "react";
 
-const filterButtons = [
-	{name: "all", label: "All"},
-	{name: "active", label: "Active"},
-	{name: "done", label: "Done"}
-];
-
 const ItemStatusFilter = ({ filter, onFilterChange = () => {} }) => {
+
+	const filterButtons = [
+		{name: "all", label: "All"},
+		{name: "active", label: "Active"},
+		{name: "done", label: "Done"}
+	];
 
 	const buttons = filterButtons.map(({ name, label }) => {
 		const isActive = name === filter;

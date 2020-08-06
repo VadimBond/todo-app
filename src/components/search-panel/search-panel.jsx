@@ -14,16 +14,16 @@ export default class SearchPanel extends Component {
 			term: e.target.value
 		});
 
-		onSearchChange(e.target.value);
+		onSearchChange(e.target.value.trim());
 	};
 
 	render() {
 		return (
 			<input type="text"
-						 className="form-control search-input"
-						 placeholder="type to search"
-						 value={this.state.term}
-						 onChange={this.onTermChange} />
+						className="form-control search-input"
+						placeholder="Type to search"
+						value={this.state.term}
+						onChange={this.onTermChange} />
 		);
 	};
 }

@@ -14,9 +14,9 @@ export default class App extends Component {
 
 	state = {
 		items: [
-			{id: 1, label: "Drink Tea", important: false, done: false},
-			{id: 2, label: "Learn React", important: true, done: false},
-			{id: 3, label: "Make App", important: false, done: false}
+			this.createItem("Drink Tea"),
+			this.createItem("Learn React"),
+			this.createItem("Make App")
 		],
 		filter: "all",
 		search: ""
@@ -84,7 +84,7 @@ export default class App extends Component {
 		if (filter === "all") {
 			return items;
 		} else if (filter === "active") {
-			return items.filter((item) => (!item.done));
+			return items.filter((item) => !item.done);
 		} else if (filter === "done") {
 			return items.filter((item) => item.done);
 		}
@@ -112,11 +112,11 @@ export default class App extends Component {
 
 		return (
 			<div className="todo-app">
-				<AppHeader toDo={toDoCount} done={doneCount}/>
+				<AppHeader toDo={toDoCount} done={doneCount} />
 
 				<div className="search-panel d-flex">
 					<SearchPanel
-						onSearchChange={this.onSearchChange}/>
+						onSearchChange={this.onSearchChange} />
 
 					<ItemStatusFilter
 						filter={filter}
