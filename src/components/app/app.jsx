@@ -10,25 +10,54 @@ import "./app.css";
 
 export default class App extends Component {
 
-	maxId = 100;
+	maxId = 0;
 
 	state = {
-		items: [
-			this.createItem("Drink Tea"),
-			this.createItem("Learn React"),
-			this.createItem("Make App")
-		],
+		items: [],
 		filter: "all",
 		search: ""
 	};
 
+	componentDidMount() {
+		this.initWithLocalStorage();
+	}
+
+	initWithLocalStorage() {
+		if (localStorage.length) {
+			const items = [];
+
+			const keys = Object.keys(localStorage);
+			for (let key of keys) {
+				items.push(JSON.parse(localStorage.getItem(key)));
+			}
+
+			const ids = items.map((item) => item.id);
+			this.maxId = Math.max(...ids);
+			
+			items.sort((a, b) => {
+				if (a.id > b.id) return 1;
+				if (a.id < b.id) return -1;
+				return 0;
+			});
+
+			this.setState({ items });
+		} else {
+			const item = this.createItem("Crack a smile :=)");
+			this.setState({ items: [item] });
+		}
+	}
+	
 	createItem(label) {
-		return {
+		const item = {
 			id: ++this.maxId,
 			label,
 			important: false,
 			done: false
 		};
+
+		localStorage.setItem(item.id, JSON.stringify(item));
+
+		return item;
 	}
 
 	onItemAdded = (label) => {
@@ -43,7 +72,9 @@ export default class App extends Component {
 		const oldItem = arr[idx];
 		const value = !oldItem[propName];
 
-		const item = { ...arr[idx], [propName]: value } ;
+		const item = { ...arr[idx], [propName]: value };
+		localStorage.setItem(item.id, JSON.stringify(item));
+
 		return [
 			...arr.slice(0, idx),
 			item,
@@ -66,6 +97,8 @@ export default class App extends Component {
 	};
 
 	onDelete = (id) => {
+		localStorage.removeItem(id); 
+		
 		this.setState((state) => {
 			const idx = state.items.findIndex((item) => item.id === id);
 			const items = [
