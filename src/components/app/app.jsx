@@ -19,11 +19,7 @@ export default class App extends Component {
 	};
 
 	componentDidMount() {
-		try {
-			this.initWithLocalStorage();
-		} catch (error) {
-			alert(error);
-		}
+		this.initWithLocalStorage();
 	}
 
 	initWithLocalStorage() {
@@ -31,17 +27,16 @@ export default class App extends Component {
 			const items = [];
 
 			const keys = Object.keys(localStorage);
-			try {
-				for (let key of keys) {
-					items.push(JSON.parse(localStorage.getItem(key)));
+			for (let key of keys) {
+				if (!Number.isNaN(+key)) {
+					try {
+						items.push(JSON.parse(localStorage.getItem(key)));
+					} catch (err) {
+						alert(err);
+					}
 				}
-			} catch (error) {
-				alert(error);
 			}
-			// for (let key of keys) {
-			// 	items.push(JSON.parse(localStorage.getItem(key)));
-			// }
-
+			
 			const ids = items.map((item) => item.id);
 			this.maxId = Math.max(...ids);
 			
@@ -66,8 +61,12 @@ export default class App extends Component {
 			done: false
 		};
 
-		localStorage.setItem(item.id, JSON.stringify(item));
-
+		try {
+			localStorage.setItem(item.id, JSON.stringify(item));
+		} catch (err) {
+			alert("Limit exceeded (for Local Storage)!", err);
+		}
+		
 		return item;
 	}
 
@@ -84,8 +83,12 @@ export default class App extends Component {
 		const value = !oldItem[propName];
 
 		const item = { ...arr[idx], [propName]: value };
-		localStorage.setItem(item.id, JSON.stringify(item));
-
+		try {
+			localStorage.setItem(item.id, JSON.stringify(item));
+		} catch (err) {
+			alert("Limit exceeded (for Local Storage)!", err);
+		}
+		
 		return [
 			...arr.slice(0, idx),
 			item,
