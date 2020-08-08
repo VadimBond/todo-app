@@ -19,7 +19,11 @@ export default class App extends Component {
 	};
 
 	componentDidMount() {
-		this.initWithLocalStorage();
+		try {
+			this.initWithLocalStorage();
+		} catch (error) {
+			alert(error);
+		}
 	}
 
 	initWithLocalStorage() {
@@ -27,9 +31,16 @@ export default class App extends Component {
 			const items = [];
 
 			const keys = Object.keys(localStorage);
-			for (let key of keys) {
-				items.push(JSON.parse(localStorage.getItem(key)));
+			try {
+				for (let key of keys) {
+					items.push(JSON.parse(localStorage.getItem(key)));
+				}
+			} catch (error) {
+				alert(error);
 			}
+			// for (let key of keys) {
+			// 	items.push(JSON.parse(localStorage.getItem(key)));
+			// }
 
 			const ids = items.map((item) => item.id);
 			this.maxId = Math.max(...ids);
